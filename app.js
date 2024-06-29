@@ -1,22 +1,16 @@
 const express = require('express');
-const path = require('path');
 const { Telegraf } = require('telegraf');
 require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
-const WEB_APP_URL = 'https://furc-telegram-bot.vercel.app';
+const WEB_APP_URL = 'https://furc-telegram-bot.vercel.app'; // Replace with your Vercel URL
 const bot = new Telegraf(BOT_TOKEN);
 const points = {};
 
 app.use(express.json());
 app.use(express.static('public'));
-
-// Serve the HTML file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 // Endpoint to claim points
 app.post('/claim', (req, res) => {
@@ -36,11 +30,7 @@ app.post('/claim', (req, res) => {
 
 // Telegram bot commands
 bot.start((ctx) => {
-    const userId = ctx.from.id;
-    if (!points[userId]) {
-        points[userId] = 0;
-    }
-    ctx.reply(`Welcome! You can claim points by clicking the link below:\n${WEB_APP_URL}`);
+    ctx.reply(`Welcome! Click the link to claim your points:\n${WEB_APP_URL}`);
 });
 
 bot.command('claim', (ctx) => {
