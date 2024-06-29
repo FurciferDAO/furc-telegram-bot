@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
-const WEB_APP_URL = 'https://furc-telegram-bot.vercel.app'; // Replace with your Vercel URL
+const WEB_APP_URL = 'https://furc-telegram-bot-wxjk.vercel.app'; // Replace with your Vercel URL
 const bot = new Telegraf(BOT_TOKEN);
 const points = {};
 
