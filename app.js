@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
+const WEB_APP_URL = 'https://furc-telegram-bot.vercel.app';
 const bot = new Telegraf(BOT_TOKEN);
 const points = {};
 
@@ -39,7 +40,7 @@ bot.start((ctx) => {
     if (!points[userId]) {
         points[userId] = 0;
     }
-    ctx.reply(`Welcome! You can claim points by clicking the button on the web app.`);
+    ctx.reply(`Welcome! You can claim points by clicking the link below:\n${WEB_APP_URL}`);
 });
 
 bot.command('claim', (ctx) => {
